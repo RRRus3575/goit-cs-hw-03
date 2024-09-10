@@ -1,0 +1,190 @@
+1. SELECT * FROM tasks WHERE user_id = 21;
+
+ id |         title         |                                                                                   description                                                                                    | status_id | user_id
+----+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------
+ 15 | Lawyer us all share.  | Culture step minute late. Believe kind increase not each prepare husband.                                                                                                       +|         3 |      21
+    |                       | Prepare sure challenge paper. Care trouble recently tonight phone this.                                                                                                          |           |
+ 18 | Sign analysis middle. | Season off cultural them this condition. Crime entire kind seem traditional base. Manager help impact reduce school their require. Unit green maybe spring answer similar alone. |         1 |      21
+
+
+2. SELECT * FROM tasks WHERE status_id = (SELECT id FROM status WHERE name = 'new');
+
+ id |                   title                   |                                                                                   description                                                                                    | status_id | user_id
+----+-------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------
+  3 | Build whatever simply resource.           | Another discuss let build until employee. Success billion age power money half. Science chair Mrs sometimes power fire body week.                                                |         1 |      26
+  5 | Mention nearly section audience.          | Tell information nature life reason teacher stuff. Hit expert may allow site possible. Walk some plan head approach particular.                                                  |         1 |      22
+  7 | Set day sort through.                     | Particular those single town hospital future back walk. Control evidence piece. Do thus agency wait soon.                                                                       +|         1 |      26
+    |                                           | Everybody world may matter room sea tonight. Similar something operation here on skill.                                                                                          |           |
+  8 | Simple institution government small that. | Sister water small father maybe call fine. Vote without recognize area. Best write show budget play few.                                                                         |         1 |      30
+ 11 | Energy within require.                    | Resource art cut product positive. Production group again north. Artist study thus treat chance site.                                                                            |         1 |      27
+ 18 | Sign analysis middle.                     | Season off cultural them this condition. Crime entire kind seem traditional base. Manager help impact reduce school their require. Unit green maybe spring answer similar alone. |         1 |      21
+ 19 | Far artist discuss.                       | Avoid crime morning process begin protect result. Per dream available minute.                                                                                                   +|         1 |      25
+    |                                           | Door foot feeling. Edge knowledge oil may series TV. Finish concern for key whole talk up say.                                                                                   |           |
+ 20 | Understand reality past chance.           | Medical door company buy piece practice collection too. Degree which improve size song evidence. A decide anything painting until whose.                                         |         1 |      30
+ 28 | Rule much sing current.                   | Create contain national late important public true let. Film camera executive other during.                                                                                     +|         1 |      33
+    |                                           | Ever old answer hot decade. Bed campaign heavy field.                                                                                                                            |           |
+ 31 | The machine relationship total.           | Economic speech south report drop trade political. Family institution occur last as enter.                                                                                       |         1 |      30
+ 34 | Study president realize.                  | Painting her shoulder issue. Prevent life interesting.                                                                                                                          +|         1 |      25
+    |                                           | Direction film behind investment strong sit. Power music organization himself building material. Free story national near.                                                       |           |
+ 36 | Language situation concern arm.           | Identify apply message force note. Along no six both read.                                                                                                                      +|         1 |      35
+    |                                           | Happy gas town bank more special above line. Class heavy head strategy growth star team. Door up maintain eight culture foreign.                                                 |           |
+ 39 | Poor game eat medical bar.                | And public effect which scene. Several night situation.                                                                                                                         +|         1 |      34
+    |                                           | Support really close citizen. Buy yet sea card public create. Anyone throughout wear movement citizen radio.                                                                     |           |
+ 42 | Play carry create far.                    | Rest school off artist. Suffer start hold service sell. West question risk foot by street.                                                                                       |         1 |      35
+(14 rows)
+
+
+3. UPDATE tasks SET status_id = (SELECT id FROM status WHERE name = 'in progress') WHERE id = 21;
+
+
+4. SELECT * FROM users WHERE id NOT IN (SELECT user_id FROM tasks);
+
+ id |    fullname     |           email
+----+-----------------+---------------------------
+ 24 | Jennifer Dillon | benitezdwayne@example.net
+ 38 | Mark Ross       | rrobinson@example.org
+ 40 | Deborah Ball    | keith69@example.com
+(3 rows)
+
+
+5. INSERT INTO tasks (title, description, status_id, user_id) 
+VALUES ('New Task Title', 'New Task Description', (SELECT id FROM status WHERE name = 'new'), 21);
+
+INSERT 0 1
+
+
+6. SELECT * FROM tasks WHERE status_id != (SELECT id FROM status WHERE name = 'completed');
+
+ id |                   title                    |                                                                                   description                                                                                    | status_id | user_id
+----+--------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------
+  3 | Build whatever simply resource.            | Another discuss let build until employee. Success billion age power money half. Science chair Mrs sometimes power fire body week.                                                |         1 |      26
+  5 | Mention nearly section audience.           | Tell information nature life reason teacher stuff. Hit expert may allow site possible. Walk some plan head approach particular.                                                  |         1 |      22
+  7 | Set day sort through.                      | Particular those single town hospital future back walk. Control evidence piece. Do thus agency wait soon.                                                                       +|         1 |      26
+    |                                            | Everybody world may matter room sea tonight. Similar something operation here on skill.                                                                                          |           |
+  8 | Simple institution government small that.  | Sister water small father maybe call fine. Vote without recognize area. Best write show budget play few.                                                                         |         1 |      30
+ 10 | Consumer chair service.                    | Simply phone quite president return different. Window new agree mission. Safe my someone into senior defense anyone.                                                            +|         2 |      30
+    |                                            | However later her reach. Away page usually team data sign boy.                                                                                                                   |           |
+ 11 | Energy within require.                     | Resource art cut product positive. Production group again north. Artist study thus treat chance site.                                                                            |         1 |      27
+ 14 | Pretty use view unit own.                  | Alone pattern second.                                                                                                                                                           +|         2 |      29
+    |                                            | Program Democrat social really spend. Goal sell nature. Arm never not join turn him card.                                                                                       +|           |
+    |                                            | Positive care activity have price draw majority. Space miss away rest top popular.                                                                                               |           |
+ 16 | Cover that wrong how condition.            | Serve hear coach cost themselves matter. Writer church writer improve inside treatment administration. Heavy account skill.                                                      |         2 |      23
+ 17 | Instead policy represent.                  | Government husband other involve the. Step opportunity summer. Present chance better part ask. Yourself according region real information surface.                               |         2 |      22
+ 18 | Sign analysis middle.                      | Season off cultural them this condition. Crime entire kind seem traditional base. Manager help impact reduce school their require. Unit green maybe spring answer similar alone. |         1 |      21
+ 19 | Far artist discuss.                        | Avoid crime morning process begin protect result. Per dream available minute.                                                                                                   +|         1 |      25
+    |                                            | Door foot feeling. Edge knowledge oil may series TV. Finish concern for key whole talk up say.                                                                                   |           |
+ 20 | Understand reality past chance.            | Medical door company buy piece practice collection too. Degree which improve size song evidence. A decide anything painting until whose.                                         |         1 |      30
+ 27 | Throughout line sometimes local.           | Always growth environment near impact admit. Similar wife clear human evidence police. Better carry tree age organization item.                                                  |         2 |      32
+ 28 | Rule much sing current.                    | Create contain national late important public true let. Film camera executive other during.                                                                                     +|         1 |      33
+    |                                            | Ever old answer hot decade. Bed campaign heavy field.                                                                                                                            |           |
+ 30 | Culture history mind avoid write.          | Second beautiful matter specific sometimes response me suggest. Rate economy seven half state.                                                                                  +|         2 |      35
+    |                                            | Human my inside choose picture remember. Save American after civil conference watch.                                                                                             |           |
+ 31 | The machine relationship total.            | Economic speech south report drop trade political. Family institution occur last as enter.  
+
+
+
+7. DELETE FROM tasks WHERE id = 11;
+
+DELETE 1
+
+
+
+8. SELECT * FROM users WHERE email LIKE 'benitezdwayne@example.net';
+
+ id |    fullname     |           email
+----+-----------------+---------------------------
+ 24 | Jennifer Dillon | benitezdwayne@example.net
+
+
+9. UPDATE users SET fullname = 'Vasyl Kotov' WHERE id = 22;
+
+
+10. SELECT s.name, COUNT(t.id) AS task_count
+FROM status s
+LEFT JOIN tasks t ON s.id = t.status_id
+GROUP BY s.name;
+
+    name     | task_count
+-------------+------------
+ completed   |         14
+ new         |         15
+ in progress |         12
+(3 rows)
+
+
+11. SELECT t.*
+FROM tasks t
+JOIN users u ON t.user_id = u.id
+WHERE u.email LIKE 'benitezdwayne@example.net';
+
+ id | title | description | status_id | user_id
+----+-------+-------------+-----------+---------
+(0 rows)
+
+
+
+12. SELECT * FROM tasks WHERE description IS NULL;
+
+ id | title | description | status_id | user_id
+----+-------+-------------+-----------+---------
+(0 rows)
+
+
+
+13. SELECT u.fullname, t.title
+FROM users u
+JOIN tasks t ON u.id = t.user_id
+WHERE t.status_id = (SELECT id FROM status WHERE name = 'in progress');
+
+    fullname     |                   title
+-----------------+--------------------------------------------
+ Tony Lam        | Consumer chair service.
+ Bryan Wilson    | Pretty use view unit own.
+ Ashley Chambers | Cover that wrong how condition.
+ Vasyl Kotov     | Instead policy represent.
+ Aaron Velez     | Throughout line sometimes local.
+ Richard Li      | Culture history mind avoid write.
+ Crystal Watson  | Bill machine degree thank.
+ Vasyl Kotov     | Look relationship director find available.
+ Michael Wilkins | Rate to never white leg.
+ Terry Jones     | Source discover surface.
+ Bryan Wilson    | Current to mouth space.
+ Brittany Nguyen | Threat of simple statement must.
+(12 rows)
+
+
+
+14. SELECT u.fullname, COUNT(t.id) AS task_count
+FROM users u
+LEFT JOIN tasks t ON u.id = t.user_id
+GROUP BY u.fullname;
+
+       fullname       | task_count
+----------------------+------------
+ Aaron Velez          |          3
+ Brendan Petersen DVM |          2
+ Deborah Ball         |          0
+ Mark Ross            |          0
+ Renee Cummings       |          1
+ Richard Li           |          4
+ Dr. George Orr DDS   |          1
+ Jennifer Dillon      |          0
+ Bryan Wilson         |          2
+ Tony Lam             |          5
+ Edgar Reid           |          1
+ Brittany Nguyen      |          4
+ Terry Jones          |          1
+ Vasyl Kotov          |          4
+ Margaret Johnson     |          3
+ Michael Wilkins      |          1
+ Ashley Chambers      |          3
+ Crystal Watson       |          2
+ George Combs         |          3
+ Victor Scott         |          1
+(20 rows)
+
+
+
+
+
+
